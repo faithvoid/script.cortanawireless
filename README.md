@@ -27,4 +27,5 @@ The script runs in two parts, "PiScript.py", which runs on the Raspberry Pi and 
 
 ## Issues:
 - Because the built-in wireless adapter on the Raspberry Pi can't be bridged, your Xbox will be on a different subnet than the rest of your devices. For just playing online games and using online homebrew software this is fine, but this means you won't be able to FTP into your Xbox or possibly use System Link.
+- It can take between 10-15 seconds to connect to a new wireless network. This is to be expected as whenever you connect to a network via this script, the entire wlan0 device is shut down and then brought back up after writing to wpa_supplicant.conf. I wouldn't worry about it too much, as I doubt anyone's going to be hopping between connections every 5 seconds, but definitely something to work on optimizing. 
 - This is hella insecure. Using sudo on scripts you don't know is risky. That being said, this is the only way I could get all of this to work, and it sure does work. I'm not using my Pi for anything mission-critical so it works great for me.
