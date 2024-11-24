@@ -5,9 +5,7 @@ Cortana Wireless is a script for XBMC4Xbox/XBMC4Gamers that allows you to to use
 ### Parts Needed:
 - Raspberry Pi running Raspbian or DietPi (should work on any Raspberry Pi with wireless capabilities, would recommend a Pi Zero W for the smallest footprint.)
 
-(Note that using an original Pi Zero W will limit you to 2.4GHz networks. It doesn't matter in theory as the Xbox maxes out at 100MB/s via ethernet anyway, but you won't be able to connect to 5GHz networks with a base Pi Zero W.)
-
-*(This script can, in theory, be used on any Debian-based machine that presents a wlan0 and an eth0, but the specific target of this combination is a Raspberry Pi so YMMV.)*
+Note that using an original Pi Zero W will limit you to 2.4GHz networks. It doesn't matter in theory as the Xbox maxes out at 100MB/s via ethernet anyway, but you won't be able to connect to 5GHz networks with a base Pi Zero W. This script can, in theory, be used on any Debian-based machine that presents a wlan0 and an eth0, but the specific target of this combination is a Raspberry Pi so YMMV.
 
 - USB ethernet adapter + microUSB OTG cable, if using a Pi Zero W/2W. (I personally would not recommend those generic miniUSB ethernet adapters as they all share the same MAC address, which can cause networking issues, along being known to just die quickly.)
 - Ethernet cable connected between the USB ethernet cable + your Xbox (the shorter the better).
