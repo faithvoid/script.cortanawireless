@@ -42,3 +42,4 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 - Integrate [XboxWirelessAdapter by agarmash](https://github.com/agarmash/XboxWirelessAdapter) once both projects are a bit more mature, negating the need for an XBMC script altogether.
 - Improve XBMC UI (specifically copying how the wireless manager looks in the Xbox dashboard) & webserver UI (for external access outside of the Xbox)
 - Improve WiFi connect/disconnect speeds
+- Add safe shutdown command.
