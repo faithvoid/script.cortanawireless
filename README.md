@@ -23,8 +23,8 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 - Once complete, go into the directory you've saved the scripts into via your terminal.
 - Type "chmod +x share_wifi.sh" to allow the script to launch.
 - Type "sudo ./share_wifi.sh" and your Pi should begin sharing it's wlan0 connection to eth0!
-- If you want to control your Raspberry Pi's wireless settings via XBMC, you'll need to run the Python script as root (sudo su && python3 CortanaWireless.py) [also maybe don't do this on a production machine, never run strange scripts as root blah blah etc etc].
-- (Optional) If you want to run the scripts every time on boot, copy "CortanaWireless.service" and "XboxWiFi.service" to /etc/systemd/system, point the paths under "Exec=" to where you've stored "CortanaWireless.py" and "share_wifi.sh", and run "systemctl enable CortanaWireless && systemctl enable XboxWiFi".
+- If you want to control your Raspberry Pi's wireless settings via XBMC, you'll need to run the Python script as root (sudo su && python3 CortanaWireless.py)
+- (Optional) If you want to run the scripts every time on boot, copy "CortanaWireless.service" and "XboxWiFi.service" (and optionally KaiEngine.service if you want to use XLink Kai) to /etc/systemd/system, point the paths under "Exec=" to where you've stored "CortanaWireless.py" and "share_wifi.sh", and run "systemctl enable CortanaWireless && systemctl enable XboxWiFi".
 - (Optional) To use XLink Kai, just install and run it on the Pi after running these scripts and you're set, no additional configuration needed!
 
 ## Usage (Xbox)
