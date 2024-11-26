@@ -1,5 +1,5 @@
 [Unit]
-Description=Cortana Display
+Description=Cortana Wireless (Remote API)
 After=multi-user.target
 
 [Service]
