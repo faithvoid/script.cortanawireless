@@ -1,0 +1,11 @@
+[Unit]
+Description=Cortana Display
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /root/CortanaWireless.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
