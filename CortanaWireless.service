@@ -1,5 +1,5 @@
 [Unit]
-Description=Cortana Wireless
+Description=Cortana Wireless (WiFi Sharing)
 After=multi-user.target
 
 [Service]
