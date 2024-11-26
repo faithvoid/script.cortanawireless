@@ -22,8 +22,8 @@ iptables -A FORWARD -i $ETH_INTERFACE -o $WIFI_INTERFACE -m state --state RELATE
 iptables -A FORWARD -i $WIFI_INTERFACE -o $ETH_INTERFACE -j ACCEPT
 
 # Save iptables rules so they persist after reboot
-echo "Saving iptables rules..."
-iptables-save > /etc/iptables/rules.v4
+#echo "Saving iptables rules..."
+#iptables-save > /etc/iptables/rules.v4
 
 # Install dnsmasq if not already installed
 #echo "Installing dnsmasq..."
@@ -49,4 +49,4 @@ ifconfig $ETH_INTERFACE 192.168.137.1 netmask 255.255.255.0 up
 echo "WiFi-to-Ethernet sharing is now enabled!"
 echo "Clients connected to the Ethernet port will receive DHCP and have internet access."
 
-# To stop the script, just reverse the changes or reboot
+# To revert the changes, just reboot (unless you've uncommented iptables-save).
