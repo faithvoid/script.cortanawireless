@@ -34,6 +34,9 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 - To connect to a wireless network, select "Connect To Network", select the SSID of the network you'd like to connect to, enter the password, and wait a few seconds for the "you're (probably) connected!" prompt to show up.
 - To verify that you're connected to the new network, select "Connection Status" again, if you see the new SSID, you're connected! If not, try again.
 
+## Usage (Other Clients)
+This script comes with a very basic PC client that can be used on anything with Python 3 & requests. This has only been tested on Linux & Android via Pydroid, YMMV elsewhere. 
+
 ## Issues:
 - Because the built-in wireless adapter on the Raspberry Pi can't be bridged, your Xbox will be on a different subnet than the rest of your devices. For just playing online games and using online homebrew software this is fine, but this means you won't be able to FTP into your Xbox or possibly use System Link. If System Link doesn't work, XLink Kai will work incredibly well out of the box with zero configuration, just installing + running it on the Pi!
 - It can take between 10-15 seconds to connect to a new wireless network. This is to be expected as whenever you connect to a network via this script, the entire wlan0 device is shut down and then brought back up after writing to wpa_supplicant.conf. I wouldn't worry about it too much, as I doubt anyone's going to be hopping between connections every 5 seconds, but definitely something to work on optimizing. 
