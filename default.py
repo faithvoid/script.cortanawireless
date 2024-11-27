@@ -3,7 +3,7 @@ import xbmc
 import requests
 
 # IP address of the Raspberry Pi running the Flask server
-raspberry_pi_ip = "http://192.168.255.255:5000"  # Replace with your Raspberry Pi IP
+raspberry_pi_ip = "http://192.168.137.1:5000"  # Replace with your Raspberry Pi IP
 
 def get_wifi_status():
     """Get current WiFi status from the Flask server."""
