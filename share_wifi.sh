@@ -21,14 +21,9 @@ iptables --table nat -A POSTROUTING -o $WIFI_INTERFACE -j MASQUERADE
 iptables -A FORWARD -i $ETH_INTERFACE -o $WIFI_INTERFACE -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i $WIFI_INTERFACE -o $ETH_INTERFACE -j ACCEPT
 
-# Save iptables rules so they persist after reboot
+# Save iptables rules so they persist after reboot - Uncomment if needed!
 #echo "Saving iptables rules..."
 #iptables-save > /etc/iptables/rules.v4
-
-# Install dnsmasq if not already installed
-#echo "Installing dnsmasq..."
-#apt update
-#apt install -y dnsmasq
 
 # Configure dnsmasq for DHCP on Ethernet
 echo "Configuring dnsmasq..."
