@@ -56,11 +56,11 @@ else
 fi
 
 # Download required files
-wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/CortanaWireless.py
-wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/CortanaWireless.service
-wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/CortanaWirelessRemote.service
-wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/KaiEngine.service
-wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/share_wifi.sh
+wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/release/CortanaWireless.py
+wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/release/CortanaWireless.service
+wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/release/CortanaWirelessRemote.service
+wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/release/KaiEngine.service
+wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/release/share_wifi.sh
 mkdir /opt/CortanaWireless
 
 # Copy service files to systemd directory
