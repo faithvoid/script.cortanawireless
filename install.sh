@@ -61,9 +61,11 @@ wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/hea
 wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/CortanaWirelessRemote.service
 wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/KaiEngine.service
 wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/share_wifi.sh
+mkdir /opt/CortanaWireless
 
 # Copy service files to systemd directory
 cp CortanaWireless.service CortanaWirelessRemote.service /etc/systemd/system/
+cp share_wifi.sh CortanaWireless.py /opt/CortanaWireless
 if [[ "$enable_kai" == true ]]; then
     cp KaiEngine.service /etc/systemd/system/
 fi
