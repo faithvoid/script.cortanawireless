@@ -78,5 +78,12 @@ if [[ "$enable_kai" == true ]]; then
     systemctl start KaiEngine.service
 fi
 
+# Remove copied files
+rm CortanaWireless.py
+rm CortanaWireless.service
+rm CortanaWirelessRemote.service
+rm KaiEngine.service
+rm share_wifi.sh
+
 # Inform the user that the setup is complete
 echo "Cortana Wireless setup complete. Services have been started and enabled."
