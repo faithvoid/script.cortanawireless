@@ -49,3 +49,4 @@ This script comes with a very basic PC client that can be used on anything with 
 - Improve WiFi connect/disconnect speeds
 - Better authentication?
 - Implementing soundcard/3.5mm support to share Xbox audio (via RCA to 3.5mm or similar) to Bluetooth devices & a way to control which device they're paired to via XBMC would be a fun addition.
+- Make a simple dashboard-agnostic homebrew .XBE with NXDK (with a .cfg file with the Pi IP) to control Pi(?) (I'm bad at C/C++, help.)
