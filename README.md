@@ -21,8 +21,8 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 - Download "install.sh", open your terminal app, type "chmod +x install.sh" to give the installer executable permissions, and then run "./install.sh", which will download and automatically set up the most recent version of Cortana Wireless (+ optionally, XLink Kai).
   
 ## Usage (Xbox)
-- Extract "default.py" to "Q:\scripts\Cortana Wireless"
-- Modify "default.py" so that the IP address points towards your Raspberry Pi's ethernet IP (192.168.137.1 after running "share_wifi.sh")
+- Extract "default.py" from "releases" to "Q:\scripts\Cortana Wireless"
+- Modify "default.py" so that the IP address points towards your Raspberry Pi's ethernet IP if you've manually changed anything (defaults to 192.168.137.1 after running "share_wifi.sh")
 - Select "Connection Status", if you see an SSID or "off", the scripts are connected! If you get an error, make sure everything is set up correctly on the Pi.
 - To connect to a wireless network, select "Connect To Network", select the SSID of the network you'd like to connect to, enter the password, and wait a few seconds for the "you're (probably) connected!" prompt to show up.
 - To verify that you're connected to the new network, select "Connection Status" again, if you see the new SSID, you're connected! If not, try again.
