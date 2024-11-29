@@ -18,7 +18,8 @@ Note that using an original Pi Zero W will limit you to 2.4GHz networks. It does
 The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Raspberry Pi, which shares the Pi's connection to your Xbox and gives it access to it's network settings, and "default.py", the client-side script that allows you to interface with the Raspberry Pi's network settings. 
 
 ## Usage (Pi)
-- ``` curl -sL https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install.sh | bash ```
+- Enter the line down below in your Pi's terminal after setting up your distro of choice!
+``` curl -sL https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install.sh | bash ```
   
 ## Usage (Xbox)
 - Extract "default.py" from "releases" to "Q:\scripts\Cortana Wireless"
