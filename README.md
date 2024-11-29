@@ -30,6 +30,7 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 
 ## Usage (Other Clients)
 This script comes with a very basic PC client that can be used on anything with Python 3 & requests. This has only been tested on Linux & Android via Pydroid, YMMV elsewhere. 
+
 ![Script running via PyDroid](https://github.com/user-attachments/assets/a7ce42d6-6513-4476-a60d-7d57258fe169)
 
 
