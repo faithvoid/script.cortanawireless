@@ -3,7 +3,7 @@ import xbmc
 import requests
 
 # IP address of the Raspberry Pi running the Flask server
-raspberry_pi_ip = "http://192.168.137.1:5000"  # Replace with your Raspberry Pi IP
+raspberry_pi_ip = "http://192.168.1.113:5000"  # Replace with your Raspberry Pi IP
 
 def get_wifi_status():
     """Get current WiFi status from the Flask server."""
@@ -49,7 +49,7 @@ def connect_to_network(ssid, password):
 #        return {"error": "Failed to disconnect!"}
 
 def shutdown_system():
-    """Disconnect from the current WiFi network."""
+    """Shut down the Raspberry Pi."""
     try:
         response = requests.get("{}/shutdown".format(raspberry_pi_ip))
         return response.json()
@@ -57,12 +57,28 @@ def shutdown_system():
         return {"error": "Failed to shut down!"}
 
 def reboot_system():
-    """Disconnect from the current WiFi network."""
+    """Reboot the Raspberry Pi."""
     try:
         response = requests.get("{}/reboot".format(raspberry_pi_ip))
         return response.json()
     except requests.exceptions.RequestException:
         return {"error": "Failed to reboot!"}
+
+def start_xlink():
+    """Start XLink Kai."""
+    try:
+        response = requests.get("{}/startxlink".format(raspberry_pi_ip))
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to start XLink Kai! Are you sure you have it installed?"}
+
+def stop_xlink():
+    """Stop XLink Kai."""
+    try:
+        response = requests.get("{}/stopxlink".format(raspberry_pi_ip))
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to stop XLink Kai!"}
 
 def show_wifi_settings():
     """Main function to interact with the user for WiFi settings."""
@@ -72,6 +88,9 @@ def show_wifi_settings():
     options = [
         "Connection Status",
         "Connect To Network",
+#        "Disconnect From Network",
+	"Start XLink Kai",
+	"Stop XLink Kai",
         "Shutdown Raspberry Pi",
         "Restart Raspberry Pi"
     ]
@@ -88,7 +107,7 @@ def show_wifi_settings():
         else:
             dialog.ok(
                 'Connection Status',
-                '{} | Name: {} | Signal: {} dBm | IP: {}'.format(
+                '| {} | Name: {} | Signal: {} dBm | IP: {} |'.format(
                     connection_info.get('status', 'N/A'),  # Online/Offline
                     connection_info.get('ssid', 'N/A'),  # SSID of the network
                     connection_info.get('signal_strength', 'N/A'),  # Signal strength
@@ -122,15 +141,24 @@ def show_wifi_settings():
         
         # Connect to the selected network
         result = connect_to_network(ssid, password)
-        dialog.ok('Connection Status', result.get("message", result.get("error", "Unknown error")))
+        dialog.ok('Connection Status', result.get("message", result.get("Error!", "Unknown error")))
 
-    elif selected_option == 2:  # Shutdown
+    elif selected_option == 2:  # Start XLink Kai
+        result = start_xlink()
+        dialog.ok('Starting XLink Kai', result.get("", result.get("Error!", "Could not start XLink Kai! Are you sure it's installed?")))
+
+    elif selected_option == 3:  # Stop XLink Kai
+        result = stop_xlink()
+        dialog.ok('Closing XLink Kai', result.get("message", result.get("Error!", "Could not start XLink Kai! Are you sure it's installed?")))
+
+    elif selected_option == 4:  # Shutdown
         result = shutdown_system()
-        dialog.ok('Shutting Down', result.get("message", result.get("error", "Unknown error")))
+        dialog.ok('Shutting Down', result.get("message", result.get("Error!", "Unknown error")))
 
-    elif selected_option == 3:  # Reboot
+    elif selected_option == 5:  # Reboot
         result = reboot_system()
-        dialog.ok('Restarting', result.get("message", result.get("error", "Unknown error")))
+        dialog.ok('Restarting', result.get("message", result.get("Error", "Unknown error")))
+
 
 if __name__ == '__main__':
     show_wifi_settings()
