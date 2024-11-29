@@ -1,0 +1,11 @@
+[Unit]
+Description=Cortana Wireless (WiFi Sharing)
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /opt/CortanaWireless/share_wifi.sh
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=XLink Kai
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/bin/kaiengine
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
