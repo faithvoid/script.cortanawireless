@@ -19,6 +19,7 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 
 ## Usage (Pi)
 - Enter the line down below in your Pi's terminal after setting up your distro of choice!
+
 ``` curl -sL https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install.sh | bash ```
   
 ## Usage (Xbox)
