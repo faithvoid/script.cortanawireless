@@ -30,6 +30,8 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 
 ## Usage (Other Clients)
 This script comes with a very basic PC client that can be used on anything with Python 3 & requests. This has only been tested on Linux & Android via Pydroid, YMMV elsewhere. 
+![Python Client running in PyDroid on Android](https://github.com/user-attachments/assets/08513fe2-0e08-4d33-9fd3-0ca625f20b67)
+
 
 ## Issues:
 - Because the built-in wireless adapter on the Raspberry Pi can't be bridged, your Xbox will be on a different subnet than the rest of your devices. For just playing online games and using online homebrew software this is fine, but this means you won't be able to FTP into your Xbox or possibly use System Link. If System Link doesn't work, XLink Kai will work incredibly well out of the box with zero configuration, just installing + running it on the Pi!
