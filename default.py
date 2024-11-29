@@ -48,6 +48,23 @@ def connect_to_network(ssid, password):
 #    except requests.exceptions.RequestException:
 #        return {"error": "Failed to disconnect!"}
 
+def scan_bluetooth_devices():
+    """Scan for available Bluetooth devices via Flask server."""
+    try:
+        response = requests.get("{}/bluetooth_scan".format(raspberry_pi_ip))
+        devices = response.json()
+        return devices.get('devices', [])
+    except requests.exceptions.RequestException:
+        return []
+
+def connect_to_bluetooth_device(mac_address):
+    """Connect to a Bluetooth device by MAC address via Flask server."""
+    try:
+        response = requests.post("{}/connect_bluetooth".format(raspberry_pi_ip), json={"mac_address": mac_address})
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to connect!"}
+
 def shutdown_system():
     """Shut down the Raspberry Pi."""
     try:
@@ -89,6 +106,7 @@ def show_wifi_settings():
         "Connection Status",
         "Connect To Network",
 #        "Disconnect From Network",
+	"Connect To Bluetooth Device",
 	"Start XLink Kai",
 	"Stop XLink Kai",
         "Shutdown Raspberry Pi",
@@ -142,20 +160,39 @@ def show_wifi_settings():
         # Connect to the selected network
         result = connect_to_network(ssid, password)
         dialog.ok('Connection Status', result.get("message", result.get("Error!", "Unknown error")))
+	    
+    elif selected_option == 2:  # Connect to Bluetooth Device
+        devices = scan_bluetooth_devices()
+        if not devices:
+            dialog.ok('No Bluetooth Devices Found', 'Unable to find any Bluetooth devices.')
+            return
+        
+        # Format device names and display in the dialog (using str.format for Python 2.7 compatibility)
+        device_names = ["{} ({})".format(device['device_name'], device['mac_address']) for device in devices]
+        selected_device_index = dialog.select('Available Bluetooth Devices', device_names)
+        
+        if selected_device_index == -1:
+            return  # User cancelled
+        
+        # Get the mac_address directly from the selected device (no need for split)
+        mac_address = devices[selected_device_index]['mac_address']
+        
+        result = connect_to_bluetooth_device(mac_address)
+        dialog.ok('Bluetooth Connection Status', result.get("message", result.get("error", "Unknown error")))
 
-    elif selected_option == 2:  # Start XLink Kai
+    elif selected_option == 3:  # Start XLink Kai
         result = start_xlink()
         dialog.ok('Starting XLink Kai', result.get("", result.get("Error!", "Could not start XLink Kai! Are you sure it's installed?")))
 
-    elif selected_option == 3:  # Stop XLink Kai
+    elif selected_option == 4:  # Stop XLink Kai
         result = stop_xlink()
         dialog.ok('Closing XLink Kai', result.get("message", result.get("Error!", "Could not start XLink Kai! Are you sure it's installed?")))
 
-    elif selected_option == 4:  # Shutdown
+    elif selected_option == 5:  # Shutdown
         result = shutdown_system()
         dialog.ok('Shutting Down', result.get("message", result.get("Error!", "Unknown error")))
 
-    elif selected_option == 5:  # Reboot
+    elif selected_option == 6:  # Reboot
         result = reboot_system()
         dialog.ok('Restarting', result.get("message", result.get("Error", "Unknown error")))
 
