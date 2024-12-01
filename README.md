@@ -38,7 +38,6 @@ This script comes with a very basic PC client that can be used on anything with 
 - Because the built-in wireless adapter on the Raspberry Pi can't be bridged, your Xbox will be on a different subnet than the rest of your devices. For just playing online games and using online homebrew software this is fine, but this means you won't be able to FTP into your Xbox or possibly use System Link. If System Link doesn't work, XLink Kai will work incredibly well out of the box with zero configuration, just installing + running it on the Pi!
 - It can take between 10-15 seconds to connect to a new wireless network. This is to be expected as whenever you connect to a network via this script, the entire wlan0 device is shut down and then brought back up after writing to wpa_supplicant.conf. I wouldn't worry about it too much, as I doubt anyone's going to be hopping between connections every 5 seconds, but definitely something to work on optimizing.
 - Bluetooth build takes 10+ seconds to scan for devices. This is normal, as we need to give the Pi as much time as possible to detect all available BT devices.
-- Modify Bluetooth implementation to show the user device names and not MAC addresses.
 - This implementation is very insecure. The scripts run with sudo privileges, and the Flask server can receive commands from basically any client that sends the correct request to the correct port. Maybe don't run this on mission-critical devices or devices directly exposed to the web, but it's Fine for a device you just leave connected to your 20+ year old game console.
 
 ## TODO:
@@ -46,6 +45,7 @@ This script comes with a very basic PC client that can be used on anything with 
 - Improve XBMC UI (specifically copying how the wireless manager looks in the Xbox dashboard) & webserver UI (for external access outside of the Xbox)
 - Improve WiFi connect/disconnect speeds
 - Add hidden network support
+- Modify Bluetooth implementation to show the user device names and not MAC addresses.
 - Better authentication?
 - Implementing soundcard/3.5mm support to share Xbox audio (via RCA to 3.5mm or similar) to Bluetooth devices & a way to control which device they're paired to via XBMC would be a fun addition. (Halfway through!)
 - Make a simple dashboard-agnostic homebrew .XBE with NXDK (with a .cfg file with the Pi IP) to control Pi(?) (I'm bad at C/C++, help.)
