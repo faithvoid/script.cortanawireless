@@ -13,6 +13,7 @@ Cortana Wireless is a script for XBMC4Xbox/XBMC4Gamers that allows you to to use
 - USB ethernet adapter + microUSB OTG cable, if using a Pi Zero W/2W. (I personally would not recommend those generic miniUSB ethernet adapters as they all share the same MAC address, which can cause networking issues, along being known to just die quickly.)
 - Ethernet cable connected between the USB ethernet cable + your Xbox (the shorter the better).
 - (Optional) USB-to-Xbox adapter (this will let you power the Raspberry Pi directly from the Xbox via one of the controller ports! I can confirm the Pi Zero W gets enough power from it to power itself + a USB hub with an ethernet port!)
+- (Optional) USB Soundcard (if you want to connect your Xbox's audio to Bluetooth by using an RCA to 3.5mm adapter)
 - (Very Optional) SH1106/SSD1306 LCD adapter for use with [Cortana Display](https://github.com/faithvoid/script.cortanadisplay).
 
 The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Raspberry Pi, which shares the Pi's connection to your Xbox and gives it access to it's network settings, and "default.py", the client-side script that allows you to interface with the Raspberry Pi's network settings. 
