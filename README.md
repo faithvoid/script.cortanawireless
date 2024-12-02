@@ -2,7 +2,10 @@
 
 Cortana Wireless is a script for XBMC4Xbox/XBMC4Gamers that allows you to to use a Raspberry Pi as a ~$35 wireless card for your Xbox, connect/disconnect to wireless networks + check your wireless network statistics via your Xbox connected to a Raspberry Pi with wireless capabilities. This is meant to serve as a modern replacement to the very-outdated-and-very-overpriced Xbox MN-740 wireless adapter, which only supports Wireless G & WEP.
 
-![cwd](https://github.com/user-attachments/assets/56d0af15-1c15-4ef5-a3b0-5c29a3906ead)
+![Cortana Wireless Main Menu](/screenshots/1.jpg)
+![Cortana Wireless - WiFi Menu](/screenshots/2.jpg)
+![Cortana Wireless - Bluetooth Menu](/screenshots/3.jpg)
+
 
 
 ### Parts Needed:
