@@ -52,5 +52,8 @@ This script comes with a very basic PC client that can be used on anything with 
 - Add hidden network support
 - Modify Bluetooth implementation to show the user device names and not MAC addresses.
 - Better authentication?
+
+- ## License:
+-  [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 - Implementing soundcard/3.5mm support to share Xbox audio (via RCA to 3.5mm or similar) to Bluetooth devices & a way to control which device they're paired to via XBMC would be a fun addition. (Halfway through!)
 - Make a simple dashboard-agnostic homebrew .XBE with NXDK (with a .cfg file with the Pi IP) to control Pi(?) (I'm bad at C/C++, help.)
