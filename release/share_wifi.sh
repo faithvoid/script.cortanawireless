@@ -13,7 +13,7 @@ fi
 # Enable IP forwarding
 echo "Enabling IP forwarding..."
 sysctl -w net.ipv4.ip_forward=1
-echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+# echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 
 # Set up NAT with iptables
 echo "Setting up iptables for NAT..."
