@@ -22,7 +22,7 @@ Cortana Wireless is a script for XBMC4Xbox/XBMC4Gamers that allows you to to use
 The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Raspberry Pi, which shares the Pi's connection to your Xbox and gives it access to it's network settings, and "default.py", the client-side script that allows you to interface with the Raspberry Pi's network settings. 
 
 ## Usage (Pi)
-- Enter the line down below in your Pi's terminal after setting up your distro of choice!
+- Enter the line down below in your Pi's terminal after setting up your distro of choice (run as root by using "sudo su"!)!
 - ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh ```
   
 ## Usage (Xbox)
