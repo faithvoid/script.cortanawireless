@@ -49,6 +49,7 @@ This script comes with a very basic PC client that can be used on anything with 
 - Integrate [XboxWirelessAdapter by agarmash](https://github.com/agarmash/XboxWirelessAdapter) once both projects are a bit more mature, negating the need for an XBMC script altogether.
 - Improve XBMC UI (specifically copying how the wireless manager looks in the Xbox dashboard) & webserver UI (for external access outside of the Xbox)
 - Improve WiFi connect/disconnect speeds
+- Integrate proper XLink control either via including an old modified XBMC build w/ XLink support or, better yet, making a new implementation in Python. 
 - Add hidden network support
 - Modify Bluetooth implementation to show the user device names and not MAC addresses.
 - Better authentication?
