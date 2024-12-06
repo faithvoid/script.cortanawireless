@@ -21,27 +21,21 @@ iptables --table nat -A POSTROUTING -o $WIFI_INTERFACE -j MASQUERADE
 iptables -A FORWARD -i $ETH_INTERFACE -o $WIFI_INTERFACE -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i $WIFI_INTERFACE -o $ETH_INTERFACE -j ACCEPT
 
-# Save iptables rules so they persist after reboot
-echo "Saving iptables rules..."
-iptables-save > /etc/iptables/rules.v4
+# Save iptables rules so they persist after reboot - Uncomment if needed!
+#echo "Saving iptables rules..."
+#iptables-save > /etc/iptables/rules.v4
 
-# Configure dhcpcd to provide DHCP on Ethernet
-echo "Configuring dhcpcd for Ethernet interface..."
-cat <<EOL >> /etc/dhcpcd.conf
+# Configure NetworkManager to share the Ethernet connection
+echo "Configuring NetworkManager to share Ethernet..."
+nmcli connection modify "$WIFI_INTERFACE" ipv4.method shared
+nmcli connection modify "$ETH_INTERFACE" ipv4.addresses "192.168.137.1/24"
+nmcli connection modify "$ETH_INTERFACE" ipv4.gateway "192.168.137.1"
+nmcli connection modify "$ETH_INTERFACE" ipv4.dns "8.8.8.8"
+nmcli connection modify "$ETH_INTERFACE" connection.autoconnect yes
 
-# Configure static IP for eth0 (Ethernet)
-interface $ETH_INTERFACE
-static ip_address=192.168.137.1/24
-denyinterfaces eth0
-EOL
-
-# Restart dhcpcd service to apply the changes
-echo "Restarting dhcpcd service..."
-systemctl restart dhcpcd
-
-# Assign a static IP to the Ethernet interface (optional, since dhcpcd is now handling it)
-# This can be omitted if dhcpcd configures it
-ifconfig $ETH_INTERFACE 192.168.137.1 netmask 255.255.255.0 up
+# Restart NetworkManager to apply changes
+echo "Restarting NetworkManager..."
+systemctl restart NetworkManager
 
 # Print success message
 echo "WiFi-to-Ethernet sharing is now enabled!"
