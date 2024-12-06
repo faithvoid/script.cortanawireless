@@ -27,10 +27,11 @@ iptables -A FORWARD -i $WIFI_INTERFACE -o $ETH_INTERFACE -j ACCEPT
 
 # Configure NetworkManager to share the Ethernet connection
 echo "Configuring NetworkManager to share Ethernet..."
-nmcli connection modify "$WIFI_INTERFACE" ipv4.method shared
+nmcli connection modify "$ETH_INTERFACE" ipv4.method shared
 nmcli connection modify "$ETH_INTERFACE" ipv4.addresses "192.168.137.1/24"
 nmcli connection modify "$ETH_INTERFACE" ipv4.gateway "192.168.137.1"
 nmcli connection modify "$ETH_INTERFACE" ipv4.dns "8.8.8.8"
+nmcli connection modify "$ETH_INTERFACE" ipv6.method ignore
 nmcli connection modify "$ETH_INTERFACE" connection.autoconnect yes
 
 # Restart NetworkManager to apply changes
