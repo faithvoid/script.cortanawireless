@@ -23,7 +23,8 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 
 ## Usage (Pi)
 - Enter the line down below in your Pi's terminal after setting up your distro of choice (run as root by using "sudo su"!)!
-- ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh ```
+- DietPi: ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh ```
+- Raspberry Pi OS: ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install_raspbian.sh && chmod +x install_raspbian.sh && ./install_raspbian.sh ```
   
 ## Usage (Xbox)
 - Extract "default.py" from "releases" to "Q:\scripts\Cortana Wireless"
