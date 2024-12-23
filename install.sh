@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ensure the script runs with superuser privileges
-if [ "$(id -u)" -ne 0 ]; then
+if [ "$(id -u)" -ne 0; then
     echo "This script must be run as root. Please use sudo."
     exit 1
 fi
@@ -42,7 +42,7 @@ if [[ "$install_xlink" == "yes" ]]; then
     rm -f /etc/apt/keyrings/teamxlink.gpg
     curl -fsSL https://dist.teamxlink.co.uk/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/teamxlink.gpg
     chmod a+r /etc/apt/keyrings/teamxlink.gpg
-    echo  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/teamxlink.gpg] https://dist.teamxlink.co.uk/linux/debian/static/deb/release/ /" | tee /etc/apt/sources.list.d/teamxlink.list > /dev/null
+    echo  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/teamxlink.gpg] https://dist.teamxlink.co.uk/linux/debian/static/deb/release/ /" | tee /etc/apt/sources.list.d/teamxlink.list
     apt-get update
     if is_installed xlinkkai; then
         echo "xlinkkai is already installed. Skipping."
@@ -53,6 +53,24 @@ if [[ "$install_xlink" == "yes" ]]; then
 else
     enable_kai=false
     echo "Skipping XLink Kai installation."
+fi
+
+# Ask the user if they want to install InsigniaDNS
+read -p "Would you like to install InsigniaDNS? (yes/no): " install_insigniaDNS
+if [[ "$install_insigniaDNS" == "yes" ]]; then
+    # Download and copy InsigniaDNS
+    wget https://raw.githubusercontent.com/insignia-live/insigniaDNS/refs/heads/master/insigniaDNS.py
+    mv insigniaDNS.py /opt/CortanaWireless/
+
+    # Enable InsigniaDNS service
+    wget https://raw.githubusercontent.com/insignia-live/insigniaDNS/refs/heads/master/insigniaDNS.service
+    cp insigniaDNS.service /etc/systemd/system/
+    systemctl enable insigniaDNS.service
+    systemctl start insigniaDNS.service
+    enable_insigniaDNS=true
+else
+    enable_insigniaDNS=false
+    echo "Skipping InsigniaDNS installation."
 fi
 
 # Download required files
