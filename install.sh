@@ -23,6 +23,36 @@ for pkg in "${packages[@]}"; do
     fi
 done
 
+# Ask the user if they want to install InsigniaDNS
+read -p "Would you like to install insigniaDNS? (yes/no): " install_insigniaDNS
+if [[ "$install_insigniaDNS" == "yes" ]]; then
+    # Ensure InsigniaDNS dependencies are installed
+    echo "Checking for insigniaDNS dependencies..."
+    insignia_dependencies=(python3-dnslib python3-requests)
+    for dep in "${insignia_dependencies[@]}"; do
+        if is_installed "$dep"; then
+            echo "$dep is already installed. Skipping."
+        else
+            echo "$dep is not installed. Installing..."
+            apt install -y "$dep"
+        fi
+    done
+
+    # Download and copy InsigniaDNS
+    wget https://raw.githubusercontent.com/insignia-live/insigniaDNS/refs/heads/master/insigniaDNS.py
+    mv insigniaDNS.py /opt/CortanaWireless/
+
+    # Enable InsigniaDNS service
+    wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/insigniaDNS.service
+    cp insigniaDNS.service /etc/systemd/system/
+    systemctl enable insigniaDNS.service
+    systemctl start insigniaDNS.service
+    enable_insigniaDNS=true
+else
+    enable_insigniaDNS=false
+    echo "Skipping insigniaDNS installation."
+fi
+
 # Ask the user if they want to install XLink Kai
 read -p "Would you like to install XLink Kai? (yes/no): " install_xlink
 if [[ "$install_xlink" == "yes" ]]; then
@@ -53,24 +83,6 @@ if [[ "$install_xlink" == "yes" ]]; then
 else
     enable_kai=false
     echo "Skipping XLink Kai installation."
-fi
-
-# Ask the user if they want to install InsigniaDNS
-read -p "Would you like to install InsigniaDNS? (yes/no): " install_insigniaDNS
-if [[ "$install_insigniaDNS" == "yes" ]]; then
-    # Download and copy InsigniaDNS
-    wget https://raw.githubusercontent.com/insignia-live/insigniaDNS/refs/heads/master/insigniaDNS.py
-    mv insigniaDNS.py /opt/CortanaWireless/
-
-    # Enable InsigniaDNS service
-    wget https://raw.githubusercontent.com/insignia-live/insigniaDNS/refs/heads/master/insigniaDNS.service
-    cp insigniaDNS.service /etc/systemd/system/
-    systemctl enable insigniaDNS.service
-    systemctl start insigniaDNS.service
-    enable_insigniaDNS=true
-else
-    enable_insigniaDNS=false
-    echo "Skipping InsigniaDNS installation."
 fi
 
 # Download required files
