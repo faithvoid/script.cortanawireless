@@ -11,7 +11,7 @@ Cortana Wireless is a script for XBMC4Xbox/XBMC4Gamers that allows you to to use
 - Easy connection to any wireless network via the XBMC4Xbox script!
 - Share your Xbox's audio from an RCA connection to a Bluetooth device such as a speaker or headset via the Bluetooth section! (Coming soon!)
 
-### Parts Needed:
+## Parts Needed:
 - Raspberry Pi running DietPi (should work on any Raspberry Pi or similar SBC with wireless capabilities, would recommend a Pi Zero W for the smallest footprint.)
 - (Raspbian support coming soon!)
 
