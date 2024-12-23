@@ -6,10 +6,14 @@ Cortana Wireless is a script for XBMC4Xbox/XBMC4Gamers that allows you to to use
 ![Cortana Wireless - WiFi Menu](/screenshots/2.jpg)
 ![Cortana Wireless - Bluetooth Menu](/screenshots/3.jpg)
 
-
+## Features:
+- insigniaDNS & XLink Kai support built right, making connecting your Xbox online an absolute breeze. 
+- Easy connection to any wireless network via the XBMC4Xbox script!
+- Share your Xbox's audio from an RCA connection to a Bluetooth device such as a speaker or headset via the Bluetooth section! (Coming soon!)
 
 ### Parts Needed:
-- Raspberry Pi running Raspbian or DietPi (should work on any Raspberry Pi with wireless capabilities, would recommend a Pi Zero W for the smallest footprint.)
+- Raspberry Pi running DietPi (should work on any Raspberry Pi or similar SBC with wireless capabilities, would recommend a Pi Zero W for the smallest footprint.)
+- (Raspbian support coming soon!)
 
 *Note that using an original Pi Zero W will limit you to 2.4GHz networks. It doesn't matter in theory as the Xbox maxes out at 100MB/s via ethernet anyway, but you won't be able to connect to 5GHz networks with a base Pi Zero W. This script can, in theory, be used on any Debian-based machine that presents a wlan0 and an eth0, but the specific target of this combination is a Raspberry Pi so YMMV.*
 
