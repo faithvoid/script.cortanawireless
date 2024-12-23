@@ -1,15 +1,16 @@
 ## Cortana Wireless - Wireless Setup Script for XBMC4Xbox
 
-Cortana Wireless is a script for XBMC4Xbox/XBMC4Gamers that allows you to to use a Raspberry Pi (or similar Debian-based machine) as a ~$35 wireless card for your Xbox, connect/disconnect to wireless networks + check your wireless network statistics via your Xbox connected to a Raspberry Pi with wireless capabilities. This is meant to serve as a modern replacement to the very-outdated-and-very-overpriced Xbox MN-740 wireless adapter, which only supports Wireless G & WEP.
+Cortana Wireless is a script for XBMC4Xbox/XBMC4Gamers that allows you to to use a Raspberry Pi (or similar Debian-based machine) as a ~$35 wireless card for your Xbox, connect/disconnect to wireless networks + check your wireless network statistics via your Xbox connected to a Raspberry Pi with wireless capabilities. This is meant to serve as a modern replacement to the very-outdated-and-very-overpriced **Xbox MN-740** wireless adapter, which only supports Wireless G & WEP, with quality-of-life features like **insigniaDNS** and **XLink Kai** built right-in.
 
 ![Cortana Wireless Main Menu](/screenshots/1.jpg)
 ![Cortana Wireless - WiFi Menu](/screenshots/2.jpg)
 ![Cortana Wireless - Bluetooth Menu](/screenshots/3.jpg)
 
 ## Features:
-- insigniaDNS & XLink Kai support built right, making connecting your Xbox online an absolute breeze. 
+- **insigniaDNS** & **XLink Kai** support built right, making connecting your Xbox online an absolute breeze. 
 - Easy connection to any wireless network via the XBMC4Xbox script!
 - Share your Xbox's audio from an RCA connection to a Bluetooth device such as a speaker or headset via the Bluetooth section! (Coming soon!)
+- Want to use it on something that's not an Xbox? The Raspberry Pi scripts themselves are system-agnostic, just select "No" to installing XLink + insigniaDNS when prompted, plug your Pi into your old device's ethernet port and you're ready to go online!
 
 ## Parts Needed:
 - Raspberry Pi running DietPi (should work on any Raspberry Pi or similar SBC with wireless capabilities, would recommend a Pi Zero W for the smallest footprint.)
