@@ -39,7 +39,7 @@ if [[ "$install_insigniaDNS" == "yes" ]]; then
     done
 
     # Download and copy InsigniaDNS
-    wget https://raw.githubusercontent.com/insignia-live/insigniaDNS/refs/heads/master/insigniaDNS.py
+    wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/insigniaDNS.py
     mv insigniaDNS.py /opt/CortanaWireless/
 
     # Enable InsigniaDNS service
