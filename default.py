@@ -1,9 +1,17 @@
+#   ______ ___  _____ _____ _   _       __  _   _  _____ ___________ 
+#   |  ___/ _ \|_   _|_   _| | | |     / / | | | ||  _  |_   _|  _  \
+#   | |_ / /_\ \ | |   | | | |_| |    / /  | | | || | | | | | | | | |
+#   |  _||  _  | | |   | | |  _  |   / /   | | | || | | | | | | | | |
+#   | |  | | | |_| |_  | | | | | |  / /    \ \_/ /\ \_/ /_| |_| |/ / 
+#   \_|  \_| |_/\___/  \_/ \_| |_/ /_/      \___/  \___/ \___/|___/  
+#       Cortana Wireless - Wireless network script by faithvoid. 
+
 import xbmcgui
 import xbmc
 import requests
 
 # IP address of the Raspberry Pi running the Flask server
-raspberry_pi_ip = "http://192.168.1.113:5000"  # Replace with your Raspberry Pi IP
+raspberry_pi_ip = "http://192.168.137.1:5000"  # Replace with your Raspberry Pi IP
 
 def get_wifi_status():
     """Get current WiFi status from the Flask server."""
