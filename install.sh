@@ -13,8 +13,8 @@ is_installed() {
 
 # Ask the user what they'd like to install
 echo "- Cortana Wireless -"
-read -p "Would you like to install InsigniaDNS? (yes/no): " install_insigniaDNS
-read -p "Would you like to install XLink Kai? (yes/no): " install_xlink
+read -p "Would you like to install InsigniaDNS? (y/n): " install_insigniaDNS
+read -p "Would you like to install XLink Kai? (y/n): " install_xlink
 
 # Install required packages
 echo "Checking for required packages..."
@@ -29,7 +29,7 @@ for pkg in "${packages[@]}"; do
 done
 
 # Install InsigniaDNS if selected
-if [[ "$install_insigniaDNS" == "yes" ]]; then
+if [[ "$install_insigniaDNS" == "y" ]]; then
     echo "Checking for insigniaDNS dependencies..."
     insignia_dependencies=(python3-dnslib python3-requests)
     for dep in "${insignia_dependencies[@]}"; do
@@ -55,7 +55,7 @@ else
 fi
 
 # Install XLink Kai if selected
-if [[ "$install_xlink" == "yes" ]]; then
+if [[ "$install_xlink" == "y" ]]; then
     echo "Checking for XLink Kai dependencies..."
     dependencies=(ca-certificates curl gnupg)
     for dep in "${dependencies[@]}"; do
