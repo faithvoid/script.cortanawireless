@@ -11,6 +11,11 @@ is_installed() {
     dpkg -l | grep -qw "$1"
 }
 
+# Ask the user what they'd like to install
+echo "- Cortana Wireless -"
+read -p "Would you like to install InsigniaDNS? (yes/no): " install_insigniaDNS
+read -p "Would you like to install XLink Kai? (yes/no): " install_xlink
+
 # Install required packages
 echo "Checking for required packages..."
 packages=(python3 python3-flask dnsmasq iptables net-tools)
@@ -23,10 +28,8 @@ for pkg in "${packages[@]}"; do
     fi
 done
 
-# Ask the user if they want to install InsigniaDNS
-read -p "Would you like to install insigniaDNS? (yes/no): " install_insigniaDNS
+# Install InsigniaDNS if selected
 if [[ "$install_insigniaDNS" == "yes" ]]; then
-    # Ensure InsigniaDNS dependencies are installed
     echo "Checking for insigniaDNS dependencies..."
     insignia_dependencies=(python3-dnslib python3-requests)
     for dep in "${insignia_dependencies[@]}"; do
@@ -38,11 +41,9 @@ if [[ "$install_insigniaDNS" == "yes" ]]; then
         fi
     done
 
-    # Download and copy InsigniaDNS
     wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/insigniaDNS.py
     mv insigniaDNS.py /opt/CortanaWireless/
 
-    # Enable InsigniaDNS service
     wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/insigniaDNS.service
     cp insigniaDNS.service /etc/systemd/system/
     systemctl enable insigniaDNS.service
@@ -53,10 +54,8 @@ else
     echo "Skipping insigniaDNS installation."
 fi
 
-# Ask the user if they want to install XLink Kai
-read -p "Would you like to install XLink Kai? (yes/no): " install_xlink
+# Install XLink Kai if selected
 if [[ "$install_xlink" == "yes" ]]; then
-    # Install XLink Kai dependencies and package
     echo "Checking for XLink Kai dependencies..."
     dependencies=(ca-certificates curl gnupg)
     for dep in "${dependencies[@]}"; do
