@@ -41,10 +41,10 @@ if [[ "$install_insigniaDNS" == "y" ]]; then
         fi
     done
 
-    wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/insigniaDNS.py
+    wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/release/insigniaDNS.py
     mv insigniaDNS.py /opt/CortanaWireless/
 
-    wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/insigniaDNS.service
+    wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/release/insigniaDNS.service
     cp insigniaDNS.service /etc/systemd/system/
     systemctl enable insigniaDNS.service
     systemctl start insigniaDNS.service
