@@ -80,21 +80,37 @@ def reboot_system():
     except requests.exceptions.RequestException:
         return {"error": "Failed to reboot!"}
 
-def start_xlink():
+def start_xlinkkai():
     """Start XLink Kai."""
     try:
-        response = requests.get("{}/startxlink".format(raspberry_pi_ip), headers=get_headers())
+        response = requests.get("{}/startxlinkkai".format(raspberry_pi_ip), headers=get_headers())
         return response.json()
     except requests.exceptions.RequestException:
         return {"error": "Failed to start XLink Kai! Are you sure you have it installed?"}
 
-def stop_xlink():
+def stop_xlinkkai():
     """Stop XLink Kai."""
     try:
-        response = requests.get("{}/stopxlink".format(raspberry_pi_ip), headers=get_headers())
+        response = requests.get("{}/stopxlinkkai".format(raspberry_pi_ip), headers=get_headers())
         return response.json()
     except requests.exceptions.RequestException:
         return {"error": "Failed to stop XLink Kai!"}
+
+def enable_xlinkkai():
+    """Enable XLink Kai."""
+    try:
+        response = requests.get("{}/enablexlinkkai".format(raspberry_pi_ip), headers=get_headers())
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to enable XLink Kai! Are you sure you have it installed?"}
+
+def disable_xlinkkai():
+    """Disable XLink Kai."""
+    try:
+        response = requests.get("{}/disablexlinkkai".format(raspberry_pi_ip), headers=get_headers())
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to disable XLink Kai!"}
 
 def start_insigniadns():
     """Start insigniaDNS."""
@@ -111,6 +127,23 @@ def stop_insigniadns():
         return response.json()
     except requests.exceptions.RequestException:
         return {"error": "Failed to stop insigniaDNS!"}
+
+def enable_insigniadns():
+    """Start insigniaDNS."""
+    try:
+        response = requests.get("{}/enableinsigniadns".format(raspberry_pi_ip), headers=get_headers())
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to enable insigniaDNS! Are you sure you have it installed?"}
+
+def disable_insigniadns():
+    """Stop insigniaDNS."""
+    try:
+        response = requests.get("{}/disableinsigniadns".format(raspberry_pi_ip), headers=get_headers())
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to disable insigniaDNS!"}
+
 
 def show_wifi_settings():
     """Main function to interact with the user for WiFi settings."""
@@ -133,7 +166,7 @@ def show_wifi_settings():
         "Connect To Bluetooth Device"
     ]
     
-    xlink_options = [
+    xlinkkai_options = [
         "Start XLink Kai",
         "Stop XLink Kai",
 	"Enable XLink Kai",
@@ -170,7 +203,7 @@ def show_wifi_settings():
             elif selected_option == 2:
                 menu_stack.append(insigniadns_options)
             elif selected_option == 3:
-                menu_stack.append(xlink_options)
+                menu_stack.append(xlinkkai_options)
             elif selected_option == 4:
                 menu_stack.append(power_options)
         
@@ -236,39 +269,37 @@ def show_wifi_settings():
                 result = connect_to_bluetooth_device(mac_address)
                 dialog.ok('Bluetooth Connection Status', result.get("message", result.get("error", "Unknown error")))
 
-        elif current_menu == xlink_options:
+        elif current_menu == xlinkkai_options:
             if selected_option == 0:  # Start XLink Kai
-                result = start_xlink()
-                dialog.ok('Starting XLink Kai', result.get("", result.get("Error!", "Could not start XLink Kai! Are you sure it's installed?")))
+                result = start_xlinkkai()
+                dialog.ok('Starting XLink Kai', result.get("message", result.get("Error!", "Could not start XLink Kai! Are you sure it's installed?")))
 
             elif selected_option == 1:  # Stop XLink Kai
-                result = stop_xlink()
+                result = stop_xlinkkai()
                 dialog.ok('Stop XLink Kai', result.get("message", result.get("Error!", "Could not stop XLink Kai! Are you sure it's installed?")))
 
-        elif current_menu == xlink_options:
-            if selected_option == 2:  # Start XLink Kai
-                result = enable_xlink()
-                dialog.ok('Enabling XLink Kai', result.get("", result.get("Error!", "Could not enable XLink Kai! Are you sure it's installed?")))
+            elif selected_option == 2:  # Enable XLink Kai
+                result = enable_xlinkkai()
+                dialog.ok('Enabling XLink Kai', result.get("message", result.get("Error!", "Could not enable XLink Kai! Are you sure it's installed?")))
 
-            elif selected_option == 3:  # Stop XLink Kai
-                result = disable_xlink()
+            elif selected_option == 3:  # Disable XLink Kai
+                result = disable_xlinkkai()
                 dialog.ok('Disabling XLink Kai', result.get("message", result.get("Error!", "Could not disable XLink Kai! Are you sure it's installed?")))
 
         elif current_menu == insigniadns_options:
             if selected_option == 0:  # Start insigniaDNS
                 result = start_insigniadns()
-                dialog.ok('Starting insigniaDNS', result.get("", result.get("Error!", "Could not start insigniaDNS! Are you sure it's installed?")))
+                dialog.ok('Starting insigniaDNS', result.get("message", result.get("Error!", "Could not start insigniaDNS! Are you sure it's installed?")))
 
             elif selected_option == 1:  # Stop insigniaDNS
                 result = stop_insigniadns()
                 dialog.ok('Stop insigniaDNS', result.get("message", result.get("Error!", "Could not stop insigniaDNS! Are you sure it's installed?")))
 
-        elif current_menu == xlink_options:
-            if selected_option == 2:  # Start XLink Kai
+            elif selected_option == 2:  # Enable insigniaDNS
                 result = enable_insigniadns()
-                dialog.ok('Enabling insigniaDNS', result.get("", result.get("Error!", "Could not enable insigniaDNS! Are you sure it's installed?")))
+                dialog.ok('Enabling insigniaDNS', result.get("message", result.get("Error!", "Could not enable insigniaDNS! Are you sure it's installed?")))
 
-            elif selected_option == 3:  # Stop XLink Kai
+            elif selected_option == 3:  # Disable insigniaDNS
                 result = disable_insigniadns()
                 dialog.ok('Disabling insigniaDNS', result.get("message", result.get("Error!", "Could not disable insigniaDNS! Are you sure it's installed?")))
 
