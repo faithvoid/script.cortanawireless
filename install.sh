@@ -13,7 +13,7 @@ is_installed() {
 
 # Ask the user what they'd like to install
 echo "- Cortana Wireless -"
-read -p "Would you like to install InsigniaDNS? (y/n): " install_insigniaDNS
+read -p "Would you like to install insigniaDNS? (y/n): " install_insigniaDNS
 read -p "Would you like to install XLink Kai? (y/n): " install_xlink
 
 # Install required packages
