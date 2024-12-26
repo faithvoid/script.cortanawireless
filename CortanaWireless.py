@@ -203,7 +203,7 @@ def connect_bluetooth():
 
     return jsonify(connect_bluetooth_device(mac_address))
 
-# XLink section
+# XLink & insigniaDNS section
 
 # Function to start XLink Kai
 def start_xlink():
@@ -221,6 +221,22 @@ def stop_xlink():
     except Exception as e:
         return {"error": str(e)}
 
+# Function to start insigniaDNS
+def start_insigniadns():
+    try:
+        subprocess.call(['sudo', 'systemctl', 'start', 'insigniaDNS'])
+        return {"message": "Starting XLink Kai!"}
+    except Exception as e:
+        return {"error": str(e)}
+
+# Function to stop XLink Kai
+def stop_insigniadns():
+    try:
+        subprocess.call(['sudo', 'systemctl', 'stop', 'insigniaDNS'])
+        return {"message": "Closing XLink Kai!"}
+    except Exception as e:
+        return {"error": str(e)}
+
 # Endpoint to start XLink Kai
 @app.route('/startxlink', methods=['GET'])
 def startxlink():
@@ -230,6 +246,16 @@ def startxlink():
 @app.route('/stopxlink', methods=['GET'])
 def stopxlink():
     return jsonify(stop_xlink())
+
+# Endpoint to start insigniaDNS
+@app.route('/startinsigniadns', methods=['GET'])
+def startxlink():
+    return jsonify(start_insigniadns())
+
+# Endpoint to stop XLink Kai
+@app.route('/stopinsigniadns', methods=['GET'])
+def stopxlink():
+    return jsonify(stop_insigniadns())
 
 # Default route for home page
 @app.route('/', methods=['GET'])
