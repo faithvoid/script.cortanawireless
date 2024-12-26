@@ -117,10 +117,10 @@ def show_wifi_settings():
     dialog = xbmcgui.Dialog()
     
     main_menu = [
-        "WiFi Options",
-        "Bluetooth Options",
-        "XLink Kai Options",
-        "insigniaDNS Options",
+        "Wireless Settings",
+        "Bluetooth Settings",
+        "insigniaDNS",
+	"XLink Kai",
         "Power Options"
     ]
     
@@ -135,12 +135,16 @@ def show_wifi_settings():
     
     xlink_options = [
         "Start XLink Kai",
-        "Stop XLink Kai"
+        "Stop XLink Kai",
+	"Enable XLink Kai",
+	"Disable XLink Kai"
     ]
     
     insigniadns_options = [
         "Start insigniaDNS",
-        "Stop insigniaDNS"
+        "Stop insigniaDNS",
+	"Enable insigniaDNS",
+	"Disable insigniaDNS"
     ]
     
     power_options = [
@@ -164,9 +168,9 @@ def show_wifi_settings():
             elif selected_option == 1:
                 menu_stack.append(bluetooth_options)
             elif selected_option == 2:
-                menu_stack.append(xlink_options)
-            elif selected_option == 3:
                 menu_stack.append(insigniadns_options)
+            elif selected_option == 3:
+                menu_stack.append(xlink_options)
             elif selected_option == 4:
                 menu_stack.append(power_options)
         
@@ -177,9 +181,8 @@ def show_wifi_settings():
                     dialog.ok('Connection Status', connection_info["error"])
                 else:
                     dialog.ok(
-                        'Connection Status',
-                        '| {} | Name: {} | Signal: {} dBm | IP: {} |'.format(
                             connection_info.get('status', 'N/A'),  # Online/Offline
+                        'Name: {}| Signal: {} dBm | IP: {} '.format(
                             connection_info.get('ssid', 'N/A'),  # SSID of the network
                             connection_info.get('signal_strength', 'N/A'),  # Signal strength
                             connection_info.get('ip_address', 'N/A')  # IP address
@@ -242,6 +245,15 @@ def show_wifi_settings():
                 result = stop_xlink()
                 dialog.ok('Stop XLink Kai', result.get("message", result.get("Error!", "Could not stop XLink Kai! Are you sure it's installed?")))
 
+        elif current_menu == xlink_options:
+            if selected_option == 2:  # Start XLink Kai
+                result = enable_xlink()
+                dialog.ok('Enabling XLink Kai', result.get("", result.get("Error!", "Could not enable XLink Kai! Are you sure it's installed?")))
+
+            elif selected_option == 3:  # Stop XLink Kai
+                result = disable_xlink()
+                dialog.ok('Disabling XLink Kai', result.get("message", result.get("Error!", "Could not disable XLink Kai! Are you sure it's installed?")))
+
         elif current_menu == insigniadns_options:
             if selected_option == 0:  # Start insigniaDNS
                 result = start_insigniadns()
@@ -250,6 +262,15 @@ def show_wifi_settings():
             elif selected_option == 1:  # Stop insigniaDNS
                 result = stop_insigniadns()
                 dialog.ok('Stop insigniaDNS', result.get("message", result.get("Error!", "Could not stop insigniaDNS! Are you sure it's installed?")))
+
+        elif current_menu == xlink_options:
+            if selected_option == 2:  # Start XLink Kai
+                result = enable_insigniadns()
+                dialog.ok('Enabling insigniaDNS', result.get("", result.get("Error!", "Could not enable insigniaDNS! Are you sure it's installed?")))
+
+            elif selected_option == 3:  # Stop XLink Kai
+                result = disable_insigniadns()
+                dialog.ok('Disabling insigniaDNS', result.get("message", result.get("Error!", "Could not disable insigniaDNS! Are you sure it's installed?")))
 
         elif current_menu == power_options:
             if selected_option == 0:  # Shutdown
