@@ -4,9 +4,15 @@ Cortana Wireless is a script for XBMC4Xbox/XBMC4Gamers that allows you to to use
 
 This is meant to serve as a modern replacement to the very-outdated-and-very-overpriced **Xbox MN-740** wireless adapter, which only supports Wireless G & WEP, with quality-of-life features like **insigniaDNS** and **XLink Kai** built right-in.
 
-![Cortana Wireless Main Menu](/screenshots/1.jpg)
-![Cortana Wireless - WiFi Menu](/screenshots/2.jpg)
-![Cortana Wireless - Bluetooth Menu](/screenshots/3.jpg)
+![Cortana Wireless Main Menu](/screenshots/1.png)
+![Cortana Wireless - Wireless Menu](/screenshots/2.png) 
+![Cortana Wireless - Connection Status](/screenshots/3.png)
+![Cortana Wireless - Wireless Networks](/screenshots/4.png)
+![Cortana Wireless - Bluetooth Menu](/screenshots/5.png)
+![Cortana Wireless - Bluetooth Devices](/screenshots/6.png)
+![Cortana Wireless - insigniaDNS Menu](/screenshots/7.png)
+![Cortana Wireless - XLink Kai Menu](/screenshots/8.png)
+![Cortana Wireless - Power Menu](/screenshots/9.png)
 
 ## Features:
 - **insigniaDNS** & **XLink Kai** support built right, making connecting your Xbox online an absolute breeze. 
