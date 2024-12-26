@@ -120,7 +120,6 @@ def stop_insigniadns():
         return response.json()
     except requests.exceptions.RequestException:
         return {"error": "Failed to stop insigniaDNS!"}
-
 def show_wifi_settings():
     """Main function to interact with the user for WiFi settings."""
     dialog = xbmcgui.Dialog()
@@ -129,12 +128,11 @@ def show_wifi_settings():
     options = [
         "Connection Status",
         "Connect To Network",
-#        "Disconnect From Network",
-	"Connect To Bluetooth Device",
-	"Start XLink Kai",
-	"Stop XLink Kai",
-	"Start insigniaDNS",
-	"Stop insigniaDNS",
+        "Connect To Bluetooth Device",
+        "Start XLink Kai",
+        "Stop XLink Kai",
+        "Start insigniaDNS",
+        "Stop insigniaDNS",
         "Shutdown Raspberry Pi",
         "Restart Raspberry Pi"
     ]
@@ -159,7 +157,6 @@ def show_wifi_settings():
                 )
             )
 
-    
     elif selected_option == 1:  # Connect to Network
         networks = scan_networks()
         if not networks:
@@ -186,7 +183,7 @@ def show_wifi_settings():
         # Connect to the selected network
         result = connect_to_network(ssid, password)
         dialog.ok('Connection Status', result.get("message", result.get("Error!", "Unknown error")))
-	    
+
     elif selected_option == 2:  # Connect to Bluetooth Device
         devices = scan_bluetooth_devices()
         if not devices:
@@ -212,24 +209,23 @@ def show_wifi_settings():
 
     elif selected_option == 4:  # Stop XLink Kai
         result = stop_xlink()
-        dialog.ok('Closing XLink Kai', result.get("message", result.get("Error!", "Could not start XLink Kai! Are you sure it's installed?")))
+        dialog.ok('Closing XLink Kai', result.get("message", result.get("Error!", "Could not stop XLink Kai! Are you sure it's installed?")))
 
-    elif selected_option == 5:  # Shutdown
-        result = shutdown_system()
-        dialog.ok('Shutting Down', result.get("message", result.get("Error!", "Unknown error")))
-
-    elif selected_option == 6:  # Start XLink Kai
-        result = start_insigniaDNS()
+    elif selected_option == 5:  # Start insigniaDNS
+        result = start_insigniadns()
         dialog.ok('Starting insigniaDNS', result.get("", result.get("Error!", "Could not start insigniaDNS! Are you sure it's installed?")))
 
-    elif selected_option == 7:  # Stop XLink Kai
-        result = stop_insigniaDNS()
-        dialog.ok('Closing insigniaDNS', result.get("message", result.get("Error!", "Could not start insigniaDNS! Are you sure it's installed?")))
+    elif selected_option == 6:  # Stop insigniaDNS
+        result = stop_insigniadns()
+        dialog.ok('Closing insigniaDNS', result.get("message", result.get("Error!", "Could not stop insigniaDNS! Are you sure it's installed?")))
+
+    elif selected_option == 7:  # Shutdown
+        result = shutdown_system()
+        dialog.ok('Shutting Down', result.get("message", result.get("Error!", "Unknown error")))
 
     elif selected_option == 8:  # Reboot
         result = reboot_system()
         dialog.ok('Restarting', result.get("message", result.get("Error", "Unknown error")))
-
-
+        
 if __name__ == '__main__':
     show_wifi_settings()
