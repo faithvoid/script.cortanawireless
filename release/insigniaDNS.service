@@ -1,0 +1,11 @@
+[Unit]
+Description=insigniaDNS
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/CortanaWireless/insigniaDNS.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
