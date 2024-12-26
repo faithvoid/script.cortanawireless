@@ -29,17 +29,29 @@ def get_wifi_status():
 # Function to get detailed connection information (SSID, Signal Strength)
 def get_connection_info():
     try:
-        result = subprocess.check_output(['iwconfig', 'wlan0']).decode('utf-8')
+        # Get WiFi status
+        status_result = subprocess.check_output(['iwgetid']).decode('utf-8').strip()
+        status = "Online" if status_result else "Offline"
+
+        # Initialize variables
         ssid = None
         signal_strength = None
-        
-        for line in result.splitlines():
-            if "ESSID" in line:
-                ssid = line.split('ESSID:')[-1].strip('"')
-            elif "Signal level" in line:
-                signal_strength = line.split('Signal level=')[-1].split(' ')[0]
-        
-        return {"ssid": ssid, "signal_strength": signal_strength}
+        ip_address = None
+
+        if status == "Online":
+            # Get WiFi connection details
+            result = subprocess.check_output(['iwconfig', 'wlan0']).decode('utf-8')
+            for line in result.splitlines():
+                if "ESSID" in line:
+                    ssid = line.split('ESSID:')[-1].strip('"')
+                elif "Signal level" in line:
+                    signal_strength = line.split('Signal level=')[-1].split(' ')[0]
+
+            # Get IP address
+            ip_result = subprocess.check_output(['hostname', '-I']).decode('utf-8').strip()
+            ip_address = ip_result.split(' ')[0] if ip_result else None
+
+        return {"status": status, "ssid": ssid, "signal_strength": signal_strength, "ip_address": ip_address}
     except subprocess.CalledProcessError:
         return {"error": "Unable to retrieve connection information"}
 
@@ -189,45 +201,87 @@ def connect_bluetooth():
     return jsonify(connect_bluetooth_device(mac_address))
 
 # XLink & insigniaDNS section
-def start_xlink():
+def start_xlinkkai():
     try:
-        subprocess.call(['sudo', 'kaiengine'])
+        subprocess.call(['sudo', 'systemctl', 'start', 'KaiEngine'])
         return {"message": "Starting XLink Kai!"}
     except Exception as e:
         return {"error": str(e)}
 
-def stop_xlink():
+def stop_xlinkkai():
     try:
-        subprocess.call(['sudo', 'killall', 'kaiengine'])
-        return {"message": "Closing XLink Kai!"}
+        subprocess.call(['sudo', 'systemctl', 'stop', 'KaiEngine'])
+        return {"message": "Stopping XLink Kai!"}
+    except Exception as e:
+        return {"error": str(e)}
+
+def enable_xlinkkai():
+    try:
+        subprocess.call(['sudo', 'systemctl', 'enable', 'KaiEngine'])
+        return {"message": "Enabling XLink Kai!"}
+    except Exception as e:
+        return {"error": str(e)}
+
+def disable_xlinkkai():
+    try:
+        subprocess.call(['sudo', 'systemctl', 'disable', 'KaiEngine'])
+        return {"message": "Disabling XLink Kai!"}
     except Exception as e:
         return {"error": str(e)}
 
 def start_insigniadns():
     try:
         subprocess.call(['sudo', 'systemctl', 'start', 'insigniaDNS'])
-        return {"message": "Starting XLink Kai!"}
+        return {"message": "Starting insigniaDNS!"}
     except Exception as e:
         return {"error": str(e)}
 
 def stop_insigniadns():
     try:
         subprocess.call(['sudo', 'systemctl', 'stop', 'insigniaDNS'])
-        return {"message": "Closing XLink Kai!"}
+        return {"message": "Stopping insigniaDNS!"}
     except Exception as e:
         return {"error": str(e)}
 
-@app.route('/startxlink', methods=['GET'])
-def startxlink():
-    if not check_authorization(request):
-        return jsonify({"error": "Unauthorized"}), 401
-    return jsonify(start_xlink())
+def enable_insigniadns():
+    try:
+        subprocess.call(['sudo', 'systemctl', 'enable', 'insigniaDNS'])
+        return {"message": "Enabling insigniaDNS!"}
+    except Exception as e:
+        return {"error": str(e)}
 
-@app.route('/stopxlink', methods=['GET'])
-def stopxlink():
+def disable_insigniadns():
+    try:
+        subprocess.call(['sudo', 'systemctl', 'disable', 'insigniaDNS'])
+        return {"message": "Disabling insigniaDNS!"}
+    except Exception as e:
+        return {"error": str(e)}
+
+# XLink & insigniaDNS App Routes
+
+@app.route('/startxlinkkai', methods=['GET'])
+def startxlinkkai():
     if not check_authorization(request):
         return jsonify({"error": "Unauthorized"}), 401
-    return jsonify(stop_xlink())
+    return jsonify(start_xlinkkai())
+
+@app.route('/stopxlinkkai', methods=['GET'])
+def stopxlinkkai():
+    if not check_authorization(request):
+        return jsonify({"error": "Unauthorized"}), 401
+    return jsonify(stop_xlinkkai())
+
+@app.route('/enablexlinkkai', methods=['GET'])
+def enablexlinkkai():
+    if not check_authorization(request):
+        return jsonify({"error": "Unauthorized"}), 401
+    return jsonify(enable_xlinkkai())
+
+@app.route('/disablexlinkkai', methods=['GET'])
+def disablexlinkkai():
+    if not check_authorization(request):
+        return jsonify({"error": "Unauthorized"}), 401
+    return jsonify(disable_xlinkkai())
 
 @app.route('/startinsigniadns', methods=['GET'])
 def startinsigniadns():
@@ -240,6 +294,20 @@ def stopinsigniadns():
     if not check_authorization(request):
         return jsonify({"error": "Unauthorized"}), 401
     return jsonify(stop_insigniadns())
+
+@app.route('/enableinsigniadns', methods=['GET'])
+def enableinsigniadns():
+    if not check_authorization(request):
+        return jsonify({"error": "Unauthorized"}), 401
+    return jsonify(enable_insigniadns())
+
+@app.route('/disableinsigniadns', methods=['GET'])
+def disableinsigniadns():
+    if not check_authorization(request):
+        return jsonify({"error": "Unauthorized"}), 401
+    return jsonify(disable_insigniadns())
+
+# Home
 
 @app.route('/', methods=['GET'])
 def home():
