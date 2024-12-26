@@ -105,6 +105,22 @@ def stop_xlink():
     except requests.exceptions.RequestException:
         return {"error": "Failed to stop XLink Kai!"}
 
+def start_insigniadns():
+    """Start insigniaDNS."""
+    try:
+        response = requests.get("{}/startinsigniadns".format(raspberry_pi_ip))
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to start insigniaDNS! Are you sure you have it installed?"}
+
+def stop_insigniadns():
+    """Stop XLink Kai."""
+    try:
+        response = requests.get("{}/stopinsigniadns".format(raspberry_pi_ip))
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to stop insigniaDNS!"}
+
 def show_wifi_settings():
     """Main function to interact with the user for WiFi settings."""
     dialog = xbmcgui.Dialog()
@@ -117,6 +133,8 @@ def show_wifi_settings():
 	"Connect To Bluetooth Device",
 	"Start XLink Kai",
 	"Stop XLink Kai",
+	"Start insigniaDNS",
+	"Stop insigniaDNS",
         "Shutdown Raspberry Pi",
         "Restart Raspberry Pi"
     ]
@@ -200,7 +218,15 @@ def show_wifi_settings():
         result = shutdown_system()
         dialog.ok('Shutting Down', result.get("message", result.get("Error!", "Unknown error")))
 
-    elif selected_option == 6:  # Reboot
+    elif selected_option == 6:  # Start XLink Kai
+        result = start_insigniaDNS()
+        dialog.ok('Starting insigniaDNS', result.get("", result.get("Error!", "Could not start insigniaDNS! Are you sure it's installed?")))
+
+    elif selected_option == 7:  # Stop XLink Kai
+        result = stop_insigniaDNS()
+        dialog.ok('Closing insigniaDNS', result.get("message", result.get("Error!", "Could not start insigniaDNS! Are you sure it's installed?")))
+
+    elif selected_option == 8:  # Reboot
         result = reboot_system()
         dialog.ok('Restarting', result.get("message", result.get("Error", "Unknown error")))
 
