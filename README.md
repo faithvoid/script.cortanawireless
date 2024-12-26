@@ -32,10 +32,12 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 - Enter the line down below in your Pi's terminal after setting up your distro of choice (run as root by using "sudo su"!)!
 - DietPi: ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh ```
 - Raspberry Pi OS: ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install_raspbian.sh && chmod +x install_raspbian.sh && ./install_raspbian.sh ```
-  
+- Change the "SHARED_SECRET" key in /opt/CortanaWireless/CortanaWireless.py to a unique password, one you'll share with the Xbox script! ESPECIALLY if your Pi is doing any sort of web / server hosting! (defaults to C0RT4N4).
+ 
 ## Usage (Xbox)
 - Extract "default.py" from "releases" to "Q:\scripts\Cortana Wireless"
 - Modify "default.py" so that the IP address points towards your Raspberry Pi's ethernet IP if you've manually changed anything (defaults to 192.168.137.1 after running "share_wifi.sh")
+- Change the "SHARED_SECRET" key in "default.py" to the same "SHARED_SECRET" key that you input into "CortanaWireless.py" earlier.
 - Select "Connection Status", if you see an SSID or "off", the scripts are connected! If you get an error, make sure everything is set up correctly on the Pi.
 - To connect to a wireless network, select "Connect To Network", select the SSID of the network you'd like to connect to, enter the password, and wait a few seconds for the "you're (probably) connected!" prompt to show up.
 - To verify that you're connected to the new network, select "Connection Status" again, if you see the new SSID, you're connected! If not, try again.
