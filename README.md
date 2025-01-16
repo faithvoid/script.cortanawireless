@@ -36,8 +36,8 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 
 ## Usage (Pi)
 - Enter the line down below in your Pi's terminal after setting up your distro of choice (run as root by using "sudo su"!)!
-- DietPi: ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh ```
-- Raspberry Pi OS: ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install_raspbian.sh && chmod +x install_raspbian.sh && ./install_raspbian.sh ```
+- DietPi (currently working perfectly!): ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh ```
+- Raspberry Pi OS (This doesn't work yet!): ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install_raspbian.sh && chmod +x install_raspbian.sh && ./install_raspbian.sh ```
 - Change the "SHARED_SECRET" key in /opt/CortanaWireless/CortanaWireless.py to a unique password, one you'll share with the Xbox script! ESPECIALLY if your Pi is doing any sort of web / server hosting! (defaults to C0RT4N4).
  
 ## Usage (Xbox)
