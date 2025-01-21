@@ -74,6 +74,7 @@ This script comes with a very basic PC client that can be used on anything with 
 - Implementing soundcard/3.5mm support to share Xbox audio (via RCA to 3.5mm or similar) to Bluetooth devices & a way to control which device they're paired to via XBMC would be a fun addition. (Halfway through!)
 - Make a simple dashboard-agnostic homebrew .XBE with NXDK (with a .cfg file with the Pi IP) to control Pi(?) (I'm bad at C/C++, help.)
 - Add custom command support for troubleshooting / funsies / etc.
+- Add proper web UI for cross-platform / console-agnostic use.
 
 ## Credits:
 - Insignia Team - For making an incredible Xbox Live replacement (I repurposed their version of insigniaDNS to only connect to "eth0" so you can set your DNS settings to the Raspberry Pi and forget about them!)
