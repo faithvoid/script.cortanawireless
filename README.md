@@ -40,6 +40,7 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 - Raspberry Pi OS (This doesn't work yet!): ``` wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/install_raspbian.sh && chmod +x install_raspbian.sh && ./install_raspbian.sh ```
 - Change the "SHARED_SECRET" key in /opt/CortanaWireless/CortanaWireless.py to a unique password, one you'll share with the Xbox script! ESPECIALLY if your Pi is doing any sort of web / server hosting! (defaults to C0RT4N4).
 - (Optional) If powering the Pi via your USB ports, I'd recommend enabling powersaving mode in dietpi-config/raspi-config to make sure your Pi uses as little power as possible (it'll still be fast enough to run everything in this script just fine!)
+- (Optional) To control XLink Kai, enter the wireless IP address of your Raspberry Pi into your browser, followed by :34522, (ie; "http://192.168.1.2:34522/"). Further information on how to use the XLink Kai webUI can be found on the official XLink Kai page.
  
 ## Usage (Xbox)
 - Extract "default.py" from "releases" to "Q:\scripts\Cortana Wireless"
@@ -51,7 +52,7 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 - (Optional) If you installed insigniaDNS, leave your Dashboard IP settings on "Automatic" and set DNS #1 to "192.168.137.1" and DNS #2 to "8.8.8.8" (or your choice of DNS provider).
 
 ## Usage (Other Clients)
-This script comes with a very basic PC client that can be used on anything with Python 3 & requests. This has only been tested on Linux & Android via Pydroid, YMMV elsewhere. 
+This script comes with a very basic PC client that can be used on anything with Python 3 & requests. This has only been tested on Linux & Android via Pydroid, YMMV elsewhere. (**This currently doesn't work due to auth changes, sorry!**)
 
 ![Script running via PyDroid](https://github.com/user-attachments/assets/a7ce42d6-6513-4476-a60d-7d57258fe169)
 
@@ -75,9 +76,12 @@ This script comes with a very basic PC client that can be used on anything with 
 - Make a simple dashboard-agnostic homebrew .XBE with NXDK (with a .cfg file with the Pi IP) to control Pi(?) (I'm bad at C/C++, help.)
 - Add custom command support for troubleshooting / funsies / etc.
 - Add proper web UI for cross-platform / console-agnostic use.
+- Fix authorization code for PC Python client.
 
 ## Credits:
 - Insignia Team - For making an incredible Xbox Live replacement (I repurposed their version of insigniaDNS to only connect to "eth0" so you can set your DNS settings to the Raspberry Pi and forget about them!)
+- XLink Kai Team - For making an incredible System Link replacement (this script installs their webUI Linux program!)
+- Bromigo - Thanks for the rigorous testing! Having another person being able to sanity-check things was a major help throughout this project.
 
 ## License:
 - [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
