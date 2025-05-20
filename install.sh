@@ -15,6 +15,8 @@ is_installed() {
 echo "- Cortana Wireless -"
 read -p "Would you like to install insigniaDNS? (y/n): " install_insigniaDNS
 read -p "Would you like to install XLink Kai? (y/n): " install_xlink
+read -p "Would you like to install xbdStats for (Discord Rich Presence support? (y/n): " install_xbdStats
+
 
 # Install required packages
 echo "Checking for required packages..."
@@ -82,6 +84,32 @@ if [[ "$install_xlink" == "y" ]]; then
 else
     enable_kai=false
     echo "Skipping XLink Kai installation."
+fi
+
+# Install xbdStats if selected
+if [[ "$install_xbdStats" == "y" ]]; then
+    echo "Checking for xbdStats dependencies..."
+    xbdStats_dependencies=(discord_rich_presence websockets)
+    for dep in "${xbdStats_dependencies[@]}"; do
+        if is_installed "$dep"; then
+            echo "$dep is already installed. Skipping."
+        else
+            echo "$dep is not installed. Installing..."
+            apt install -y "$dep"
+        fi
+    done
+
+    wget https://github.com/MrMilenko/xbdStats/raw/refs/heads/main/server.py
+    mv server.py /opt/CortanaWireless/xbdStats.py
+
+    wget https://raw.githubusercontent.com/faithvoid/script.cortanawireless/refs/heads/main/release/xbdStats.service
+    cp xbdStats.service /etc/systemd/system/
+    systemctl enable xbdStats.service
+    systemctl start xbdStats.service
+    enable_xbdStats=true
+else
+    enable_xbdStats=false
+    echo "Skipping xbdStats installation."
 fi
 
 # Download required files
