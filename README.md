@@ -82,6 +82,7 @@ This script comes with a very basic PC client that can be used on anything with 
 ## Credits:
 - Insignia Team - For making an incredible Xbox Live replacement (I repurposed their version of insigniaDNS to only connect to "eth0" so you can set your DNS settings to the Raspberry Pi and forget about them!)
 - XLink Kai Team - For making an incredible System Link replacement (this script installs their webUI Linux program!)
+- OfficialTeamUIX + MrMilenko + Mobcat - xbdStats for Discord Rich Presence support.
 - Bromigo - Thanks for the rigorous testing! Having another person being able to sanity-check things was a major help throughout this project.
 
 ## License:
