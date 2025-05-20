@@ -144,6 +144,37 @@ def disable_insigniadns():
     except requests.exceptions.RequestException:
         return {"error": "Failed to disable insigniaDNS!"}
 
+def start_xbdStats():
+    """Start xbdStats."""
+    try:
+        response = requests.get("{}/startxbdstats".format(raspberry_pi_ip), headers=get_headers())
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to start xbdStats! Are you sure you have it installed?"}
+
+def stop_xbdStats():
+    """Stop xbdStats."""
+    try:
+        response = requests.get("{}/stopxbdstats".format(raspberry_pi_ip), headers=get_headers())
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to stop xbdStats!"}
+
+def enable_xbdStats():
+    """Enable xbdStats."""
+    try:
+        response = requests.get("{}/enablexbdstats".format(raspberry_pi_ip), headers=get_headers())
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to enable xbdStats! Are you sure you have it installed?"}
+
+def disable_xbdStats():
+    """Disable xbdStats."""
+    try:
+        response = requests.get("{}/disablexbdstats".format(raspberry_pi_ip), headers=get_headers())
+        return response.json()
+    except requests.exceptions.RequestException:
+        return {"error": "Failed to disable xbdStats!"}
 
 def show_wifi_settings():
     """Main function to interact with the user for WiFi settings."""
@@ -154,6 +185,7 @@ def show_wifi_settings():
         "Bluetooth Settings",
         "insigniaDNS",
 	"XLink Kai",
+	"xbdStats"
         "Power Options"
     ]
     
@@ -184,6 +216,13 @@ def show_wifi_settings():
         "Shutdown Raspberry Pi",
         "Restart Raspberry Pi"
     ]
+
+    xbdstats_options = [
+        "Start xbdStats",
+        "Stop xbdStats",
+	"Enable xbdStats",
+	"Disable xbdStats"
+    ]
     
     menu_stack = [main_menu]
     
@@ -205,7 +244,10 @@ def show_wifi_settings():
             elif selected_option == 3:
                 menu_stack.append(xlinkkai_options)
             elif selected_option == 4:
+                menu_stack.append(xbdstats_options)
+            elif selected_option == 5:
                 menu_stack.append(power_options)
+
         
         elif current_menu == wifi_options:
             if selected_option == 0:  # Connection Status
@@ -302,6 +344,23 @@ def show_wifi_settings():
             elif selected_option == 3:  # Disable insigniaDNS
                 result = disable_insigniadns()
                 dialog.ok('Disabling insigniaDNS', result.get("message", result.get("Error!", "Could not disable insigniaDNS! Are you sure it's installed?")))
+		    
+        elif current_menu == xbdstats_options:
+            if selected_option == 0:  # Start xbdStats
+                result = start_xbdStats()
+                dialog.ok('Starting xbdStats', result.get("message", result.get("Error!", "Could not start xbdStats! Are you sure it's installed?")))
+
+            elif selected_option == 1:  # Stop xbdStats
+                result = stop_xbdStats()
+                dialog.ok('Stopping xbdStats', result.get("message", result.get("Error!", "Could not stop xbdStats! Are you sure it's installed?")))
+
+            elif selected_option == 2:  # Enable xbdStats
+                result = enable_xbdStats()
+                dialog.ok('Enabling xbdStats', result.get("message", result.get("Error!", "Could not enable xbdStats! Are you sure it's installed?")))
+
+            elif selected_option == 3:  # Disable xbdStats
+                result = disable_xbdStats()
+                dialog.ok('Disabling xbdStats', result.get("message", result.get("Error!", "Could not disable xbdStats! Are you sure it's installed?")))
 
         elif current_menu == power_options:
             if selected_option == 0:  # Shutdown
