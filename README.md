@@ -42,6 +42,8 @@ The script runs in two parts, "CortanaWireless.py" & "share_wifi.sh" on the Rasp
 - Change the "SHARED_SECRET" key in /opt/CortanaWireless/CortanaWireless.py to a unique password, one you'll share with the Xbox script! ESPECIALLY if your Pi is doing any sort of web / server hosting! (defaults to C0RT4N4).
 - (Optional) If powering the Pi via your USB ports, I'd recommend enabling powersaving mode in dietpi-config/raspi-config to make sure your Pi uses as little power as possible (it'll still be fast enough to run everything in this script just fine!)
 - (Optional) To control XLink Kai, enter the wireless IP address of your Raspberry Pi into your browser, followed by :34522, (ie; "http://192.168.1.2:34522/"). Further information on how to use the XLink Kai webUI can be found on the official XLink Kai page.
+- (Optional) If using xbdStats, you'll have to modify "xbdStats.py" in /opt/CortanaWireless to include your Discord Client ID.
+
  
 ## Usage (Xbox)
 - Extract "default.py" from "releases" to "Q:\scripts\Cortana Wireless"
