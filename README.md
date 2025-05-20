@@ -65,17 +65,15 @@ This script comes with a very basic PC client that can be used on anything with 
 - It can take between 10-15 seconds to connect to a new wireless network. This is to be expected as whenever you connect to a network via this script, the entire wlan0 device is shut down and then brought back up after writing to wpa_supplicant.conf. I wouldn't worry about it too much, as I doubt anyone's going to be hopping between connections every 5 seconds, but definitely something to work on optimizing.
 - Bluetooth build takes 10+ seconds to scan for devices. This is normal, as we need to give the Pi as much time as possible to detect all available BT devices.
 - Bluetooth latency is currently somewhere between 0.5 to 0.75 seconds. In it's current state I'd recommend using it primarily for music listening as the delay may be too great for videos and games. Can possibly be rectified by using a standalone adapter? But ideally the solution isn't "buy more hardware".
-- This implementation is very insecure. The scripts run with sudo privileges, and the Flask server can receive commands from basically any client that sends the correct request to the correct port. Maybe don't run this on mission-critical devices or devices directly exposed to the web, but it's Fine for a device you just leave connected to your 20+ year old game console.
+- This implementation is very insecure. The scripts run with sudo privileges, and the Flask server can receive commands from basically any client that sends the correct request & auth codes to the correct port. Maybe don't run this on mission-critical devices or devices directly exposed to the web, but it's Fine for a device you just leave connected to your 20+ year old game console.
 
 ## TODO:
 - Add [xbdStats](https://github.com/MrMilenko/xbdStats) to installation options  for Discord Rich Presence support!
 - Integrate [XboxWirelessAdapter by agarmash](https://github.com/agarmash/XboxWirelessAdapter) once both projects are a bit more mature, negating the need for an XBMC script altogether.
 - Improve XBMC UI (specifically copying how the wireless manager looks in the Xbox dashboard) & webserver UI (for external access outside of the Xbox)
 - Improve WiFi connect/disconnect speeds
-- Integrate proper XLink control either via including an old modified XBMC build w/ XLink support or, better yet, making a new implementation in Python. 
 - Add hidden network support
 - Modify Bluetooth implementation to show the user device names and not MAC addresses.
-- Better authentication?
 - Implementing soundcard/3.5mm support to share Xbox audio (via RCA to 3.5mm or similar) to Bluetooth devices & a way to control which device they're paired to via XBMC would be a fun addition. (Halfway through!)
 - Add custom command support for troubleshooting / funsies / etc.
 - Add proper web UI for cross-platform / console-agnostic use.
