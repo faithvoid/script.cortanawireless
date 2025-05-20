@@ -257,7 +257,35 @@ def disable_insigniadns():
     except Exception as e:
         return {"error": str(e)}
 
-# XLink & insigniaDNS App Routes
+def start_xbdStats():
+    try:
+        subprocess.call(['sudo', 'systemctl', 'start', 'xbdStats'])
+        return {"message": "Starting xbdStats!"}
+    except Exception as e:
+        return {"error": str(e)}
+
+def stop_xbdStats():
+    try:
+        subprocess.call(['sudo', 'systemctl', 'stop', 'xbdStats'])
+        return {"message": "Stopping xbdStats!"}
+    except Exception as e:
+        return {"error": str(e)}
+
+def enable_xbdStats():
+    try:
+        subprocess.call(['sudo', 'systemctl', 'enable', 'xbdStats'])
+        return {"message": "Enabling xbdStats!"}
+    except Exception as e:
+        return {"error": str(e)}
+
+def disable_xbdStats():
+    try:
+        subprocess.call(['sudo', 'systemctl', 'disable', 'xbdStats'])
+        return {"message": "Disabling xbdStats!"}
+    except Exception as e:
+        return {"error": str(e)}
+
+# XLink, insigniaDNS & xbdStats App Routes
 
 @app.route('/startxlinkkai', methods=['GET'])
 def startxlinkkai():
@@ -306,6 +334,30 @@ def disableinsigniadns():
     if not check_authorization(request):
         return jsonify({"error": "Unauthorized"}), 401
     return jsonify(disable_insigniadns())
+
+@app.route('/startxbdstats', methods=['GET'])
+def startxbdstats():
+    if not check_authorization(request):
+        return jsonify({"error": "Unauthorized"}), 401
+    return jsonify(start_xbdStats())
+
+@app.route('/stopxbdstats', methods=['GET'])
+def stopxbdstats():
+    if not check_authorization(request):
+        return jsonify({"error": "Unauthorized"}), 401
+    return jsonify(stop_xbdStats())
+
+@app.route('/enablexbdstats', methods=['GET'])
+def enablexbdstats():
+    if not check_authorization(request):
+        return jsonify({"error": "Unauthorized"}), 401
+    return jsonify(enable_xbdStats())
+
+@app.route('/disablexbdstats', methods=['GET'])
+def disablexbdstats():
+    if not check_authorization(request):
+        return jsonify({"error": "Unauthorized"}), 401
+    return jsonify(disable_xbdStats())
 
 # Home
 
