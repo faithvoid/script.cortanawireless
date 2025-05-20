@@ -65,6 +65,7 @@ This script comes with a very basic PC client that can be used on anything with 
 - This implementation is very insecure. The scripts run with sudo privileges, and the Flask server can receive commands from basically any client that sends the correct request to the correct port. Maybe don't run this on mission-critical devices or devices directly exposed to the web, but it's Fine for a device you just leave connected to your 20+ year old game console.
 
 ## TODO:
+- Add [xbdStats](https://github.com/MrMilenko/xbdStats) to installation options  for Discord Rich Presence support!
 - Integrate [XboxWirelessAdapter by agarmash](https://github.com/agarmash/XboxWirelessAdapter) once both projects are a bit more mature, negating the need for an XBMC script altogether.
 - Improve XBMC UI (specifically copying how the wireless manager looks in the Xbox dashboard) & webserver UI (for external access outside of the Xbox)
 - Improve WiFi connect/disconnect speeds
@@ -73,7 +74,6 @@ This script comes with a very basic PC client that can be used on anything with 
 - Modify Bluetooth implementation to show the user device names and not MAC addresses.
 - Better authentication?
 - Implementing soundcard/3.5mm support to share Xbox audio (via RCA to 3.5mm or similar) to Bluetooth devices & a way to control which device they're paired to via XBMC would be a fun addition. (Halfway through!)
-- Make a simple dashboard-agnostic homebrew .XBE with NXDK (with a .cfg file with the Pi IP) to control Pi(?) (I'm bad at C/C++, help.)
 - Add custom command support for troubleshooting / funsies / etc.
 - Add proper web UI for cross-platform / console-agnostic use.
 - Fix authorization code for PC Python client.
