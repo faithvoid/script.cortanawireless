@@ -17,6 +17,7 @@ This is meant to serve as a modern replacement to the very-outdated-and-very-ove
 ## Features:
 - **insigniaDNS** & **XLink Kai** support built right, making connecting your Xbox online an absolute breeze. 
 - Easy connection to any wireless network via the XBMC4Xbox script!
+- Broadcast which games you're playing on Discord via [xbdStats!](https://github.com/MrMilenko/xbdStats) (requires [ShortcutRelayXBE](https://github.com/OfficialTeamUIX/ShortcutRelayXBE))
 - Share your Xbox's audio from an RCA connection to a Bluetooth device such as a speaker or headset via the Bluetooth section! (Coming soon!)
 - Want to use it on something that's not an Xbox? The Raspberry Pi scripts themselves are system-agnostic, just select "No" to installing XLink + insigniaDNS when prompted, plug your Pi into your old device's ethernet port and you're ready to go online!
 
